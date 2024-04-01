@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Mi Página</title>
+    <link rel="stylesheet" th:href="@{/css/index.css}" />
+    <link rel="stylesheet" th:href="@{/css/navbar.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+  <body>
+    <header>
+      <div th:replace="~{fragments/navbar :: navbar}"></div>
+    </header>
+    <main class="index">
+      <section class="index__top">
+        <h1>Página de Inicio</h1>
+        <p th:text="${mensaje}" style="color: var(--primary-color)"></p>
+      </section>
+      <section class="index__section">
+        <h2 th:text="'¡Hola, ' + ${nombre} + '!'"></h2>
+        <p
+          th:text="'Nombre completo: ' + ${nombre} + ' ' + ${apellido}"></p>
+        <p th:text="'Correo electrónico: ' + ${email}"></p>
+        <section class="index__list">
+          <ul>
+            <li>
+              <a th:href="@{/params/string(texto='Usmatrón')}">Saludar a Wey</a>
+            </li>
+            <li>
+              <a th:href="@{/params/string(texto='js>>>>java')}">Saludar a
+                Fulano</a>
+            </li>
+            <li>
+              <a
+                th:href="@{/params/mix-params(saludo='Hola Mia', numero=69)}">Saludar</a>
+            </li>
+          </ul>
+        </section>
+      </section>
+    </main>
+    <footer></footer>
+  </body>
+</html>

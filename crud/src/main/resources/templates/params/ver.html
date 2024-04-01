@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <link rel="stylesheet" th:href="@{/css/navbar.css}" />
+        <link rel="stylesheet" th:href="@{/css/ver.css}" />
+        <link rel="stylesheet" th:href="@{/css/style.css}" />
+    </head>
+
+    <body>
+        <header>
+            <div th:replace="~{fragments/navbar :: navbar}"></div>
+        </header>
+
+        <main class="ver">
+            <h1>Recibir parametros del Request HTTP GET - URL</h1>
+            <div th:text="${resultado}"></div>
+        </main>
+        <footer>
+        </footer>
+    </body>
+</html>
