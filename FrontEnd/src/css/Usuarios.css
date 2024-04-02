@@ -18,12 +18,25 @@
   border: 3px solid var(--third-color);
 }
 
+.usuariosTitle__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .usuariosTitle__container > h2 {
   font-size: 5rem;
   margin-bottom: 2rem;
   text-align: center;
   color: white;
   border-bottom: 3px solid var(--third-color);
+}
+
+.product__add {
+  font-size: 3.5rem;
+  color: white;
+  margin-left: 2rem;
+  margin-bottom: 1.55rem;
+  cursor: pointer;
 }
 
 .appointments_content__container {
@@ -57,7 +70,7 @@ th {
   font-size: 2rem;
 }
 
-.table_titles{
+.table_titles {
   color: #fff;
   font-size: 2.75rem;
   margin-top: 2.5rem;

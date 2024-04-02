@@ -31,7 +31,6 @@ public class UserController {
 
   @PostMapping("/verifyToken")
   public ResponseEntity<?> verifyToken(HttpServletRequest request) {
-    // Intentamos obtener la cookie llamada 'token'
     Cookie jwtCookie = Arrays
       .stream(request.getCookies())
       .filter(cookie -> "token".equals(cookie.getName()))

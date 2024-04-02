@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../css/Update.css";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/UserContext";
@@ -7,7 +7,8 @@ import { useProduct } from "../context/ProductContext";
 function UptadeItem({ item, id, toggleUpdate }) {
   const { register, handleSubmit, setValue } = useForm();
   const { users, signUp } = useAuth();
-  const { products } = useProduct();
+  const { products, createUpdateProduct } = useProduct();
+  const [button, setButton] = useState(true);
 
   const foundItem =
     "product" === item
@@ -17,7 +18,6 @@ function UptadeItem({ item, id, toggleUpdate }) {
   useEffect(() => {
     if (foundItem) {
       if (item === "product") {
-        console.log("product fill");
         setValue("productName", foundItem.productName);
         setValue("productDescription", foundItem.productDescription);
         setValue("productPrice", foundItem.productPrice);
@@ -30,12 +30,24 @@ function UptadeItem({ item, id, toggleUpdate }) {
     }
   }, []);
   const onSubmitProduct = handleSubmit(async (data) => {
-    console.log(data);
+    setButton(false);
+    if (id) {
+      data.productId = id;
+    }
+    await createUpdateProduct(data);
+    setTimeout(() => {
+      toggleUpdate(0);
+    }, 1500);
   });
   const onSubmitUser = handleSubmit(async (data) => {
-    console.log(data);
-    data.userId = id;
+    setButton(false);
+    if (id) {
+      data.userId = id;
+    }
     await signUp(data);
+    setTimeout(() => {
+      toggleUpdate(0);
+    }, 1500);
   });
   return (
     <section>
@@ -46,7 +58,12 @@ function UptadeItem({ item, id, toggleUpdate }) {
             <section className="update__inputs">
               <div>
                 <p>Nombre</p>
-                <input type="text" {...register("productName")} />
+
+                <input
+                  type="text"
+                  {...register("productName")}
+                  readOnly={id === "" ? false : true}
+                />
               </div>
               <div>
                 <p>Descripción</p>
@@ -63,9 +80,15 @@ function UptadeItem({ item, id, toggleUpdate }) {
             </section>
 
             <section className="update__button">
-              <button type="submit" className="submit_button">
-                Actualizar
-              </button>
+              {button ? (
+                <button type="submit" className="submit_button">
+                  {id === "" ? "Crear" : "Actualizar"}
+                </button>
+              ) : (
+                <p className="submit__text">
+                  {id === "" ? "Creando..." : "Actualizando..."}
+                </p>
+              )}
               <button className="submit_button" onClick={() => toggleUpdate(0)}>
                 Cancelar
               </button>
@@ -90,9 +113,15 @@ function UptadeItem({ item, id, toggleUpdate }) {
             </section>
 
             <section className="update__button">
-              <button type="submit" className="submit_button">
-                Actualizar
-              </button>
+              {button ? (
+                <button type="submit" className="submit_button">
+                  {id === "" ? "Crear" : "Actualizar"}
+                </button>
+              ) : (
+                <p className="submit__text">
+                  {id === "" ? "Creando..." : "Actualizando..."}
+                </p>
+              )}
               <button className="submit_button" onClick={() => toggleUpdate(0)}>
                 Cancelar
               </button>

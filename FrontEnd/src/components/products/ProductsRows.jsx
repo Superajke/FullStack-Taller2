@@ -3,7 +3,7 @@ import { useProduct } from "../../context/ProductContext";
 import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
 
 function ProductsRows({ toggleUpdate }) {
-  const { products, deleteUser } = useProduct(); // Asume que `deleteUser` viene de `useProduct`
+  const { products, deleteProduct } = useProduct();
 
   return (
     <>
@@ -21,7 +21,7 @@ function ProductsRows({ toggleUpdate }) {
           </td>
           <td
             style={{ cursor: "pointer" }}
-            onClick={() => deleteUser(product.productId)}
+            onClick={() => deleteProduct(product.productId)}
           >
             <FaRegTrashAlt />
           </td>

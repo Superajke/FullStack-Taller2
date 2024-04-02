@@ -11,6 +11,7 @@
 .update {
   background-color: var(--background-color-dark);
   position: fixed;
+  border-radius: 3rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -18,20 +19,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 50%;
-  height: 50%;
+  width: 45%;
+  height: 45%;
   z-index: 1000;
   border: 1px solid #ccc;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-.update__inputs{
+.update__inputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   color: white;
   gap: 1rem;
 }
-.update__form input{
+.update__form input {
   color: white;
   padding-left: 1rem;
   margin-top: 1.4rem;
@@ -43,8 +44,17 @@
   border: none;
 }
 
-.update__button{
+.update__button {
   display: flex;
   justify-content: space-around;
-  
+  align-items: center;
+}
+
+.submit__text {
+  margin-top: 2.2rem;
+  color: white;
+  font-size: 2rem;
+  border: 2px solid var(--primary-color);
+  padding: 1rem;
+  border-radius: 3rem;
 }
