@@ -4,7 +4,7 @@ function Footer() {
 
   return (
     <section className="footer">
-      <p>© {actualYear} Academic Link / All rights reserved</p>
+      <p>© {actualYear} Samuel Arango</p>
     </section>
   );
 }

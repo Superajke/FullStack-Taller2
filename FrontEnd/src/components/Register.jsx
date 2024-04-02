@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import "../css/Register.css";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/UserContext";
 import { useState } from "react";
 
 const Register = ({ showLoginForm }) => {

@@ -1,11 +1,12 @@
-import { useAuth } from "../context/AuthContext";
-
+import { useAuth } from "../context/UserContext";
+import "../css/Home.css";
 function Home() {
-  const { logOut } = useAuth();
+  const { user } = useAuth();
   return (
-    <section>
-      <div>Home</div>
-      <button onClick={() => logOut()}>Cerrrar </button>
+    <section className="home">
+      <h1 className="home__title">
+        ¡Bienvenido {user?.firstName} {user?.lastName}!
+      </h1>
     </section>
   );
 }

@@ -30,3 +30,13 @@ export const verifyTokenRequest = async () => {
     }
   );
 };
+
+export const getUserRequest = async () =>
+  await axios.get("http://localhost:3000/api/v1/user", {
+    withCredentials: true,
+  });
+
+export const deleteUserRequest = async (userId) =>
+  await axios.delete(`http://localhost:3000/api/v1/user/${userId}`, {
+    withCredentials: true,
+  });

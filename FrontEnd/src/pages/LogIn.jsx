@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Register from "../components/Register";
 import "../css/Login.css";
 import { useEffect, useState } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 function LogIn() {
@@ -25,7 +25,7 @@ function LogIn() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/");
+      navigate("/home");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAuthenticated]);
