@@ -5,7 +5,7 @@ import {
   verifyTokenRequest,
   logOutRequest,
   getUserRequest,
-  deleteUserRequest
+  deleteUserRequest,
 } from "../api/user.api";
 import Cookies from "js-cookie";
 
@@ -27,10 +27,10 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await createUserRequest(user);
       setIsAuthenticated(true);
+      getUsers();
       setUser(res.data);
       return res;
     } catch (error) {
-      console.log(error);
       return;
     }
   };
@@ -86,28 +86,25 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
       return;
     }
-  }
+  };
 
   const deleteUser = async (userId) => {
     try {
       await deleteUserRequest(userId);
-      getUsers()
+      getUsers();
     } catch (error) {
       console.log(error);
       return;
     }
-  
-  }
+  };
 
   useEffect(() => {
     const check = async () => {
       await checkLogin();
     };
     check();
-    getUsers()
+    getUsers();
   }, []);
-
-  
 
   return (
     <AuthContext.Provider
@@ -120,7 +117,7 @@ export const AuthProvider = ({ children }) => {
         signUp,
         checkLogin,
         getUsers,
-        deleteUser
+        deleteUser,
       }}
     >
       {children}

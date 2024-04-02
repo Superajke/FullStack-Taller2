@@ -1,8 +1,8 @@
-import { useState } from "react";
-import UsersRows from "./UsersRows";
+import React, { useState } from "react";
+import ProductsRows from "./ProductsRows";
 import UpdateItem from "../UptadeItem";
 
-function UsersTable() {
+function ProductsTable() {
   const [update, setUpdate] = useState(false);
   const [currentId, setCurrentId] = useState(null);
 
@@ -10,28 +10,31 @@ function UsersTable() {
     setCurrentId(id);
     setUpdate(!update);
   };
+
   return (
     <>
       <section className="appointments_content__container">
         <table className="appointments__table">
           <thead>
             <tr>
-              <th>Nombre Completo</th>
-              <th>Email</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Precio</th>
+              <th>Stock</th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>
           </thead>
           <tbody>
-            <UsersRows toggleUpdate={toggleUpdate} />
+            <ProductsRows toggleUpdate={toggleUpdate} />
           </tbody>
         </table>
       </section>
       {update && (
-        <UpdateItem item="user" id={currentId} toggleUpdate={toggleUpdate} />
+        <UpdateItem item="product" id={currentId} toggleUpdate={toggleUpdate} />
       )}
     </>
   );
 }
 
-export default UsersTable;
+export default ProductsTable;

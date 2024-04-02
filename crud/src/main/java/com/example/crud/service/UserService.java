@@ -26,6 +26,16 @@ public class UserService {
   }
 
   public void saveOrUpdate(User user) {
+    if (user.getUserId() != null) {
+      // El usuario ya existe, es una actualización
+      Optional<User> existingUser = userRepository.findById(user.getUserId());
+      if (existingUser.isPresent()) {
+        String currentPassword = existingUser.get().getPassword();
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+          user.setPassword(currentPassword);
+        } else {}
+      }
+    }
     userRepository.save(user);
   }
 

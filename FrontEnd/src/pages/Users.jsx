@@ -9,7 +9,7 @@ function Users() {
       <header className="usuariosTitle__container">
           <h2>Usuarios</h2>
         </header>
-      <UsersTable />;
+      <UsersTable />
       </section>
     </section>
   );

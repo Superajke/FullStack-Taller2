@@ -1,5 +1,8 @@
+import { useState } from "react";
 import { useAuth } from "../../context/UserContext";
-function UsersRows() {
+import UptadeItem from "../UptadeItem";
+import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
+function UsersRows({ toggleUpdate }) {
   const { users, deleteUser } = useAuth();
   return (
     <>
@@ -9,14 +12,21 @@ function UsersRows() {
             {user.firstName} {user.lastName}
           </td>
           <td>{user.email}</td>
-          <td>Editar</td>
           <td
             style={{ cursor: "pointer" }}
             onClick={() => {
-                deleteUser(user.userId);
+              toggleUpdate(user.userId);
             }}
           >
-            ❌
+            <FaPencilAlt />
+          </td>
+          <td
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              deleteUser(user.userId);
+            }}
+          >
+            <FaRegTrashAlt />
           </td>
         </tr>
       ))}

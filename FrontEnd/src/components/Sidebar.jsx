@@ -12,9 +12,7 @@ function Sidebar() {
 
   return (
     <section className="sidebar">
-      <h1 className="sidebar__title">
-        Taller 2
-      </h1>
+      <h1 className="sidebar__title">Taller 2</h1>
       <ul>
         <li
           className="sidebar__li"
@@ -32,9 +30,17 @@ function Sidebar() {
         >
           Usuarios
         </li>
+        <li
+          className="sidebar__li"
+          onClick={() => {
+            navigate("/products");
+          }}
+        >
+          Products
+        </li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>
-        Sign Out
+        Cerrar Sesion
       </h1>
     </section>
   );

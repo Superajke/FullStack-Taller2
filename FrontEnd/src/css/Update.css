@@ -1,0 +1,50 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  z-index: 999;
+}
+
+.update {
+  background-color: var(--background-color-dark);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+  z-index: 1000;
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.update__inputs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: white;
+  gap: 1rem;
+}
+.update__form input{
+  color: white;
+  padding-left: 1rem;
+  margin-top: 1.4rem;
+  margin-bottom: 2.2rem;
+  width: 29.8rem;
+  height: 5rem;
+  border-radius: 2.2rem;
+  background: var(--background-color);
+  border: none;
+}
+
+.update__button{
+  display: flex;
+  justify-content: space-around;
+  
+}
