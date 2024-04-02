@@ -6,6 +6,8 @@ import com.example.crud.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
 import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,7 @@ public class JwtService {
   private JwtProperties jwtProperties;
 
   public String generateToken(User user) {
+    Key key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
     return Jwts
       .builder()
       .setSubject(user.getEmail())
@@ -27,28 +30,27 @@ public class JwtService {
       .setExpiration(
         new Date(System.currentTimeMillis() + jwtProperties.getExpiration())
       )
-      .signWith(SignatureAlgorithm.HS512, jwtProperties.getSecret().getBytes())
+      .signWith(key, SignatureAlgorithm.HS512)
       .compact();
   }
 
   public boolean validateToken(String token) {
     try {
-      Jwts
-        .parser()
-        .setSigningKey(jwtProperties.getSecret().getBytes())
-        .parseClaimsJws(token);
+      Key key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
+      Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
       return true;
     } catch (Exception e) {
-      // Captura todas las excepciones específicas de JWT y cualquier excepción genérica
       e.printStackTrace();
       return false;
     }
   }
 
   public User getUserFromToken(String token) {
+    Key key = Keys.hmacShaKeyFor(jwtProperties.getSecret().getBytes());
     Claims claims = Jwts
-      .parser()
-      .setSigningKey(jwtProperties.getSecret().getBytes())
+      .parserBuilder()
+      .setSigningKey(key)
+      .build()
       .parseClaimsJws(token)
       .getBody();
 
