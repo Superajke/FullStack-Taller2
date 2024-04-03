@@ -36,7 +36,7 @@ function Sidebar() {
             navigate("/products");
           }}
         >
-          Products
+          Productos
         </li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>

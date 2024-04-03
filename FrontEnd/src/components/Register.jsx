@@ -56,18 +56,18 @@ const Register = ({ showLoginForm }) => {
         >
           {state == 1 && (
             <section className="register__personal">
-              <h1>Personal Information</h1>
+              <h1>Información Personal</h1>
               <section className="register__inputs">
                 <input
                   type="text"
                   {...register("firstName", { required: true })}
-                  placeholder="Name"
+                  placeholder="Nombre"
                 />
 
                 <input
                   type="text"
                   {...register("lastName", { required: true })}
-                  placeholder="Last Name"
+                  placeholder="Apellido"
                 />
 
               </section>
@@ -80,12 +80,12 @@ const Register = ({ showLoginForm }) => {
         >
           {state == 2 && (
             <section className="register__user">
-              <h1>User Information</h1>
+              <h1>Información de Usuario</h1>
               <input
                 className="register__input"
                 type="text"
                 {...register("email", { required: true })}
-                placeholder="User Email"
+                placeholder="Correo Electrónico"
               />
 
               <section className="register__inputs">
@@ -93,13 +93,13 @@ const Register = ({ showLoginForm }) => {
                 <input
                   type="password"
                   {...register("password", { required: true })}
-                  placeholder="Password"
+                  placeholder="Contraseña"
                 />
 
                 <input
                   type="password"
                   {...register("user_password_confirm", { required: true })}
-                  placeholder="Confirm Pass"
+                  placeholder="Confirmar Contraseña"
                 />
               </section>
             </section>
@@ -138,7 +138,7 @@ const Register = ({ showLoginForm }) => {
           <div className={state == 2 ? "dot--active" : "dot"}></div>
         </section>
         <p className="login__register">
-          Already have an account? <span onClick={onBar}>Login</span>
+          ¿Ya tienes una cuenta? <span onClick={onBar}>Login</span>
         </p>
       </form>
     </section>

@@ -55,17 +55,17 @@ function LogIn() {
                 <div className="login__bar" onClick={showRegisterForm}></div>
               </section>
 
-              <p>User Email</p>
+              <p>Correo Eléctronico</p>
               <input type="text" {...register("email")} />
 
-              <p>Password</p>
+              <p>Contraseña</p>
               <input type="password" {...register("password")} />
               <button type="submit" className="submit_button">
-                LOG IN
+                Iniciar Sesión
               </button>
               <p className="login__register">
-                Don&apos;t have an account yet?{" "}
-                <span onClick={showRegisterForm}>Register</span>
+                ¿No tienes una cuenta?{" "}
+                <span onClick={showRegisterForm}>Registrate</span>
               </p>
             </form>
           </section>
