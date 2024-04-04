@@ -1,6 +1,6 @@
 # FullStack Taller 2
 
-Una breve descripción de tu proyecto va aquí.
+Programa con CRUD Usuarios y productos
 
 ## Requisitos Previos
 
