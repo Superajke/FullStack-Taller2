@@ -12,6 +12,7 @@ function UsersRows({ toggleUpdate }) {
             {user.firstName} {user.lastName}
           </td>
           <td>{user.email}</td>
+          <td>{user.role}</td>
           <td
             style={{ cursor: "pointer" }}
             onClick={() => {

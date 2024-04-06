@@ -1,7 +1,9 @@
 package com.example.crud.controller;
 
 import com.example.crud.dto.OrderDTO;
+import com.example.crud.dto.OrderResponseDTO;
 import com.example.crud.service.OrderService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,11 @@ public class OrderController {
 
   @Autowired
   private OrderService orderService;
+
+  @GetMapping
+  public List<OrderResponseDTO> getOrders() {
+    return orderService.getOrders();
+  }
 
   @PostMapping
   public ResponseEntity<?> createOrder(@RequestBody OrderDTO orderDTO) {

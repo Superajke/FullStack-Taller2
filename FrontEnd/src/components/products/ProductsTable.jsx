@@ -23,8 +23,8 @@ function ProductsTable() {
               <th>Descripción</th>
               <th>Precio</th>
               <th>Stock</th>
-              {user.role === "ADMIN" && <th>Editar</th>}
-              {user.role === "ADMIN" && <th>Eliminar</th>}
+              {user?.role === "ADMIN" && <th>Editar</th>}
+              {user?.role === "ADMIN" && <th>Eliminar</th>}
             </tr>
           </thead>
           <tbody>

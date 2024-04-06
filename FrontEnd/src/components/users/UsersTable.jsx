@@ -18,6 +18,7 @@ function UsersTable() {
             <tr>
               <th>Nombre Completo</th>
               <th>Email</th>
+              <th>Rol</th>
               <th>Editar</th>
               <th>Eliminar</th>
             </tr>

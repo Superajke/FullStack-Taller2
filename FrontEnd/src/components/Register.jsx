@@ -36,7 +36,6 @@ const Register = ({ showLoginForm }) => {
       alert("Passwords do not match");
       isValid = false;
     }
-    console.log(data)
     delete data.user_password_confirm;
     if (isValid) {
       signUp(data);
