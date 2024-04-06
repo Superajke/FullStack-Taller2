@@ -7,11 +7,14 @@ import Users from "../pages/Users";
 import Products from "../pages/Products";
 
 function RoutesPG() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   return (
     <Routes>
       <Route path="/" element={!isAuthenticated ? <LogIn /> : <Home />} />
-      <Route path="/users" element={<Users />} />
+      <Route
+        path="/users"
+        element={user?.role !== "ADMIN" ? <Home /> : <Users />}
+      />
       <Route path="/products" element={<Products />} />
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ProductsRows from "./ProductsRows";
 import UpdateItem from "../UptadeItem";
+import { useAuth } from "../../context/UserContext";
 
 function ProductsTable() {
+  const { user } = useAuth();
   const [update, setUpdate] = useState(false);
   const [currentId, setCurrentId] = useState(null);
 
@@ -21,8 +23,8 @@ function ProductsTable() {
               <th>Descripción</th>
               <th>Precio</th>
               <th>Stock</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
+              {user.role === "ADMIN" && <th>Editar</th>}
+              {user.role === "ADMIN" && <th>Eliminar</th>}
             </tr>
           </thead>
           <tbody>

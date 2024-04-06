@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../css/Sidebar.css";
 
 function Sidebar() {
-  const { logOut } = useAuth();
+  const { logOut, user } = useAuth();
   const navigate = useNavigate();
   const onClick = () => {
     logOut();
@@ -22,14 +22,16 @@ function Sidebar() {
         >
           Inicio
         </li>
-        <li
-          className="sidebar__li"
-          onClick={() => {
-            navigate("/users");
-          }}
-        >
-          Usuarios
-        </li>
+        {user.role == "ADMIN" && (
+          <li
+            className="sidebar__li"
+            onClick={() => {
+              navigate("/users");
+            }}
+          >
+            Usuarios
+          </li>
+        )}
         <li
           className="sidebar__li"
           onClick={() => {
