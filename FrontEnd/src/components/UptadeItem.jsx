@@ -51,8 +51,8 @@ function UptadeItem({ item, id, toggleUpdate }) {
   });
   return (
     <section>
-      <div className="backdrop" onClick={() => toggleUpdate(0)}></div>
-      <div className="update">
+      <section className="backdrop" onClick={() => toggleUpdate(0)}></section>
+      <section className="update">
         {item === "product" && (
           <form onSubmit={onSubmitProduct} className="update__form">
             <section className="update__inputs">
@@ -128,7 +128,7 @@ function UptadeItem({ item, id, toggleUpdate }) {
             </section>
           </form>
         )}
-      </div>
+      </section>
     </section>
   );
 }

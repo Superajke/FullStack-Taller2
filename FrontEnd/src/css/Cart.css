@@ -1,0 +1,78 @@
+.bubble-button {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 1000;
+}
+
+.bubble-button__btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 45%;
+  cursor: pointer;
+  padding: 1.75rem 2rem 1rem 1.5rem;
+  font-size: 3.5rem;
+  border: 0.2rem solid white;
+  z-index: 1010;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+
+@keyframes blinker {
+  50% {
+    background-color: rgba(255, 0, 0, 0.442);
+  }
+}
+
+.bubble-button__btn--blink {
+  animation: blinker 6s linear infinite;
+}
+
+.bubble-button__btn:hover {
+  background-color: var(--primary-color);
+  border: 2px solid white;
+  transition: all 0.3s;
+}
+
+.bubble-button__cart-info {
+  position: fixed;
+  right: 20px;
+  top: 10rem;
+  background-color: white;
+  border: 1px solid var(--background-color-dark);
+  border-radius: 8px;
+  padding: 20px;
+  width: fit-content;
+  z-index: 1005;
+  display: none;
+}
+
+.bubble-button__cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+}
+
+.bubble-button__cart-item__quantity {
+  cursor: pointer;
+  background-color: var(--primary-color);
+  text-align: center;
+  border-radius: 50%;
+  font-size: 1rem;
+  padding: 1rem;
+  margin: 2rem;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orders_table td,
+.orders_table th {
+  text-align: center;
+  border: solid 0px white;
+}

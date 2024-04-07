@@ -67,13 +67,10 @@ public class LoginController {
 
   @PostMapping("/logout")
   public ResponseEntity<?> logout(HttpServletResponse response) {
-    // Crear una cookie nula con maxAge=0 para eliminar la cookie
     Cookie cookie = new Cookie("token", null);
     cookie.setHttpOnly(true);
     cookie.setPath("/");
-    // Si has estado utilizando HTTPS, también debes establecer la cookie como segura
-    // cookie.setSecure(true);
-    cookie.setMaxAge(0); // La cookie se eliminará inmediatamente
+    cookie.setMaxAge(0);
     response.addCookie(cookie);
 
     return ResponseEntity.ok().body("Sesión cerrada con éxito.");

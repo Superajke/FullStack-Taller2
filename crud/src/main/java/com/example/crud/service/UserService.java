@@ -25,15 +25,23 @@ public class UserService {
     return userRepository.findByEmail(email);
   }
 
-  public void saveOrUpdate(User user) {
-    if (user.getUserId() != null) {
-      // El usuario ya existe, es una actualización
+  public void saveOrUpdate(User user) throws Exception {
+    if (user.getUserId() == null) {
+      Optional<User> existingUserByEmail = userRepository.findByEmail(
+        user.getEmail()
+      );
+      if (existingUserByEmail.isPresent()) {
+        throw new Exception("El correo ya está en uso");
+      }
+    } else {
       Optional<User> existingUser = userRepository.findById(user.getUserId());
       if (existingUser.isPresent()) {
         String currentPassword = existingUser.get().getPassword();
         if (user.getPassword() == null || user.getPassword().isEmpty()) {
           user.setPassword(currentPassword);
-        } else {}
+        }
+      } else {
+        throw new Exception("El usuario no existe");
       }
     }
     userRepository.save(user);

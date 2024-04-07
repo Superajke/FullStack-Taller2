@@ -4,6 +4,7 @@ import "../css/Login.css";
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { Toaster, toast } from "react-hot-toast";
 
 function LogIn() {
   const [showLogin, setShowLogin] = useState(true);
@@ -12,6 +13,13 @@ function LogIn() {
   const navigate = useNavigate();
 
   const { register, handleSubmit } = useForm();
+
+  const toastStyle = {
+    borderRadius: "10px",
+    background: "var(--background-color-dark)",
+    color: "var(--primary-color)",
+    transform: "scale(-1, 1)",
+  };
 
   const showLoginForm = () => {
     setShowLogin(true);
@@ -32,15 +40,24 @@ function LogIn() {
   const onSubmit = handleSubmit(async (data) => {
     let key = true;
     if (!data.email) {
-      console.log("second");
+      toast.error("Ingresa un correo válido", {
+        style: toastStyle,
+      });
       key = false;
     }
     if (!data.password) {
-      console.log("first");
+      toast.error("Ingresa tu contraseña", {
+        style: toastStyle,
+      });
       key = false;
     }
     if (key) {
-      await logIn(data);
+      const res = await logIn(data);
+      if (typeof res !== "object") {
+        toast.error(res, {
+          style: toastStyle,
+        });
+      }
     }
   });
 
@@ -49,6 +66,7 @@ function LogIn() {
       <section className={!showRegister ? "active" : "hidden"}>
         {showLogin && (
           <section className="login">
+            <Toaster />
             <form onSubmit={onSubmit} className="login__form">
               <section className="login__bars">
                 <div className="login__bar--modifier"></div>

@@ -72,10 +72,14 @@ public class UserController {
     @RequestBody User user,
     HttpServletResponse response
   ) {
-    userService.saveOrUpdate(user);
+    try {
+      userService.saveOrUpdate(user);
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
     String token = jwtService.generateToken(user);
 
-    // Crear y enviar la cookie con el token JWT
     Cookie cookie = new Cookie("token", token);
     cookie.setHttpOnly(false);
     cookie.setPath("/");

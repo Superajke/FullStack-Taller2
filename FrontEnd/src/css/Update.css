@@ -58,3 +58,12 @@
   padding: 1rem;
   border-radius: 3rem;
 }
+
+.delete__section {
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

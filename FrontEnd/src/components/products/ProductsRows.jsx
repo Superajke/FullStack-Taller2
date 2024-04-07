@@ -1,11 +1,13 @@
 import React from "react";
 import { useProduct } from "../../context/ProductContext";
-import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
+import { FaCartPlus, FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
 import { useAuth } from "../../context/UserContext";
+import { useOrder } from "../../context/OrderContext";
 
-function ProductsRows({ toggleUpdate }) {
+function ProductsRows({ toggleUpdate, toggleDelete }) {
   const { user } = useAuth();
-  const { products, deleteProduct } = useProduct();
+  const { products } = useProduct();
+  const { addItem } = useOrder();
 
   return (
     <>
@@ -15,17 +17,30 @@ function ProductsRows({ toggleUpdate }) {
           <td>{product.productDescription}</td>
           <td>${product.productPrice}</td>
           <td>{product.productStock}</td>
+          {user?.role === "USER" && (
+            <td
+              onClick={() => {
+                addItem(product);
+              }}
+              className="table__button"
+              style={{ cursor: "pointer", fontSize: "2.5rem" }}
+            >
+              <FaCartPlus />
+            </td>
+          )}
           {user?.role === "ADMIN" && (
             <>
               <td
-                style={{ cursor: "pointer" }}
+                className="table__button"
                 onClick={() => toggleUpdate(product.productId)}
               >
                 <FaPencilAlt />
               </td>
               <td
-                style={{ cursor: "pointer" }}
-                onClick={() => deleteProduct(product.productId)}
+                className="table__button"
+                onClick={() =>
+                  toggleDelete(product.productId, product.productName)
+                }
               >
                 <FaRegTrashAlt />
               </td>

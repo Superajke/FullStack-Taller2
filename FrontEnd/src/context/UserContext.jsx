@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
       checkLogin();
       return res;
     } catch (error) {
-      return;
+      return error.response.data;
     }
   };
 
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
       checkLogin();
       return res.data;
     } catch (error) {
-      return error;
+      return error.response.data;
     }
   };
 
@@ -95,7 +95,7 @@ export const AuthProvider = ({ children }) => {
       getUsers();
     } catch (error) {
       console.log(error);
-      return;
+      return error.response.data;
     }
   };
 

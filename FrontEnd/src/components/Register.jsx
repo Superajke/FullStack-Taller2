@@ -3,6 +3,7 @@ import "../css/Register.css";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useAuth } from "../context/UserContext";
 import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
 
 const Register = ({ showLoginForm }) => {
   const { signUp } = useAuth();
@@ -10,8 +11,15 @@ const Register = ({ showLoginForm }) => {
   const {
     register,
     handleSubmit,
+    getValues,
   } = useForm();
 
+  const toastStyle = {
+    borderRadius: "10px",
+    background: "var(--background-color-dark)",
+    color: "var(--primary-color)",
+    transform: "scale(-1, 1)",
+  };
 
   const onBar = () => {
     showLoginForm();
@@ -20,6 +28,19 @@ const Register = ({ showLoginForm }) => {
 
   const changeStateForward = () => {
     if (state == 1) {
+      const values = getValues(["firstName", "lastName"]);
+      if (!values[0]) {
+        toast.error("Por favor ingresa tu Nombre", {
+          style: toastStyle,
+        });
+        return;
+      }
+      if (!values[1]) {
+        toast.error("Por favor ingresa tu Apellido", {
+          style: toastStyle,
+        });
+        return;
+      }
       setState(2);
     } 
   };
@@ -30,20 +51,26 @@ const Register = ({ showLoginForm }) => {
     } 
   };
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async(data) => {
     let isValid = true;
     if (data.password !== data.user_password_confirm) {
-      alert("Passwords do not match");
+      toast.error("Las contraseñas no coinciden", {
+        style: toastStyle,
+      });
       isValid = false;
     }
     delete data.user_password_confirm;
     if (isValid) {
-      signUp(data);
+      const res = await signUp(data);
+      toast.error(res, {
+        style: toastStyle,
+      });
     }
   });
 
   return (
     <section className="register">
+      <Toaster />
       <form onSubmit={onSubmit} className="register__form">
         <section className="login__bars">
           <div className="login__bar" onClick={onBar}></div>

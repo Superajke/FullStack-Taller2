@@ -14,7 +14,6 @@ function Home() {
         <figure>
           <img src={Sponge} alt="Sponge" className="home__img" />
         </figure>
-        <p onClick={() => {navigate("/products")}} className="home__sections">Ver productos</p>
         <p onClick={() => {navigate("/products")}} className="home__sections">Comprar productos</p>
         <h2 className="home__subtitle">¡Gracias por preferirnos!</h2>
       </section>

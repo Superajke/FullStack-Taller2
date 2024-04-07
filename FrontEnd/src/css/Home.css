@@ -15,7 +15,7 @@
 
 .home__title {
   margin-top: 2rem;
-  font-size: 3.5rem;
+  font-size: 3.75rem;
   font-weight: 700;
   margin-bottom: 1rem;
   color: white;
@@ -24,7 +24,7 @@
 
 .home__subtitle {
   margin-top: 2rem;
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
   margin-bottom: 5rem;
   color: var(--primary-color);
@@ -35,7 +35,7 @@
   margin-top: 2rem;
   padding: 0.5rem;
   color: white;
-  font-size: 2rem;
+  font-size: 3rem;
   cursor: pointer;
   border-bottom: 2px solid var(--secondary-color);
 }
