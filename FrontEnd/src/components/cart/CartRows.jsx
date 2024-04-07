@@ -5,7 +5,7 @@ import { useAuth } from "../../context/UserContext";
 import { useProduct } from "../../context/ProductContext";
 import { Toaster, toast } from "react-hot-toast";
 
-function OrdersRows() {
+function CartRows() {
   const { cart, updateQuantity } = useOrder();
   const { user } = useAuth();
   const { products } = useProduct();
@@ -66,4 +66,4 @@ function OrdersRows() {
   );
 }
 
-export default OrdersRows;
+export default CartRows;

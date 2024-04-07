@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Users from "../pages/Users";
 import Products from "../pages/Products";
 import ProtectedRoute from "../ProtectedRoute";
+import Orders from "../pages/Orders";
 
 function RoutesPG() {
   const { isAuthenticated, user } = useAuth();
@@ -20,6 +21,7 @@ function RoutesPG() {
           element={user?.role !== "ADMIN" ? <Home /> : <Users />}
         />
         <Route path="/products" element={<Products />} />
+        <Route path="/orders" element={<Orders />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

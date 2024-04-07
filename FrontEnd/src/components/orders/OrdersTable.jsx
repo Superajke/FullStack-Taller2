@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import OrdersRows from "./OrdersRows";
+import { useAuth } from "../../context/UserContext";
+import OrderRows from "./OrderRows";
 
 function OrdersTable() {
+  const { user } = useAuth();
   return (
     <>
-      <section>
-        <table className="orders_table">
+      <section className="appointments_content__container">
+        <table className="appointments__table">
           <thead>
             <tr>
-              <th>Productos</th>
-              <th>Cantidad</th>
-              <th>Precio</th>
+              <th>Precio Total</th>
+              <th>Fecha de compra</th>
+              {user?.role === "ADMIN" && <th>Usuario</th>}
+              <th>Detalles</th>
             </tr>
           </thead>
           <tbody>
-            <OrdersRows />
+            <OrderRows />
           </tbody>
         </table>
       </section>

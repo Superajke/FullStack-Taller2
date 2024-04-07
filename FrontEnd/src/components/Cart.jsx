@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
 import "../css/Cart.css";
-import OrdersTable from "./orders/OrdersTable";
 import { useOrder } from "../context/OrderContext";
 import { useAuth } from "../context/UserContext";
 import { Toaster, toast } from "react-hot-toast";
+import CartTable from "./cart/CartTable";
 
 const toastStyle = {
   borderRadius: "10px",
@@ -49,7 +49,7 @@ const Cart = () => {
   }`;
 
   const handleBuy = async () => {
-    const items = cart.find((item) => item.userId === user.userId);
+    const items = cart.filter((item) => item.userId === user.userId);
     const order = {
       userId: user.userId,
       orderDetails: items.map((item) => ({
@@ -78,7 +78,7 @@ const Cart = () => {
         >
           {items.length > 0 ? (
             <>
-              <OrdersTable />
+              <CartTable />
 
               <div
                 style={{

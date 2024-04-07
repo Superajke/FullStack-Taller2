@@ -13,7 +13,7 @@ function Sidebar() {
   return (
     <section className="sidebar">
       <h1 className="sidebar__title">Tienda</h1>
-      {user.role === "ADMIN" && <p>{user.role}</p>}
+      {user.role === "ADMIN" && <p style={{marginBottom: "1rem"}}>{user.role}</p>}
       <ul>
         <li
           className="sidebar__li"
@@ -40,6 +40,14 @@ function Sidebar() {
           }}
         >
           Productos
+        </li>
+        <li
+          className="sidebar__li"
+          onClick={() => {
+            navigate("/orders");
+          }}
+        >
+          Órdenes
         </li>
       </ul>
       <h1 className="sidebar__bottom" onClick={onClick}>

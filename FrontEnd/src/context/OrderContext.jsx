@@ -13,6 +13,7 @@ export const useOrder = () => {
 export const OrderProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [cart, setCart] = useState([]);
+
   const getOrders = async () => {
     try {
       const res = await getOrderRequest();
