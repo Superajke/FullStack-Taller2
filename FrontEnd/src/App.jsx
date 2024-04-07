@@ -5,7 +5,7 @@ import { useAuth } from "./context/UserContext";
 import RoutesPG from "./routes/RoutesPG";
 
 function App() {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   return (
     <main>
       <section className="content">
@@ -14,7 +14,7 @@ function App() {
           <RoutesPG />
         </section>
       </section>
-      {isAuthenticated && <Cart />}
+      {isAuthenticated && user?.role ==="USER" && <Cart />}
       <Footer />
     </main>
   );

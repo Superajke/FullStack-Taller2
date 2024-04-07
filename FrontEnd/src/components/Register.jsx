@@ -62,9 +62,11 @@ const Register = ({ showLoginForm }) => {
     delete data.user_password_confirm;
     if (isValid) {
       const res = await signUp(data);
-      toast.error(res, {
-        style: toastStyle,
-      });
+      if(typeof res !== 'object'){
+        toast.error(res, {
+          style: toastStyle,
+        });
+      }
     }
   });
 

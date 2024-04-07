@@ -3,6 +3,7 @@ import "../css/Update.css";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/UserContext";
 import { useProduct } from "../context/ProductContext";
+import { toast } from "react-hot-toast";
 
 function UptadeItem({ item, id, toggleUpdate }) {
   const { register, handleSubmit, setValue } = useForm();

@@ -31,8 +31,8 @@ function ProductsTable() {
               <th>Nombre</th>
               <th>Descripción</th>
               <th>Precio</th>
-              <th>Stock</th>
-              {user?.role === "USER" && <th>Comprar</th>}
+              {user?.role === "ADMIN" && <th>Stock</th>}
+              {user?.role === "USER" && <th>Añadir</th>}
               {user?.role === "ADMIN" && <th>Editar</th>}
               {user?.role === "ADMIN" && <th>Eliminar</th>}
             </tr>

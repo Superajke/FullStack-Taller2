@@ -32,7 +32,7 @@ export const OrderProvider = ({ children }) => {
     }
   };
 
-  const addItem = (product) => {
+  const addItem = (product, id) => {
     const existingItem = cart.find(
       (item) => item.productId === product.productId
     );
@@ -41,6 +41,7 @@ export const OrderProvider = ({ children }) => {
       return;
     }
     const newProduct = {
+      userId: id,
       productId: product.productId,
       productName: product.productName,
       productPrice: product.productPrice,

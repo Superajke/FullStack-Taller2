@@ -31,9 +31,6 @@ public class LoginController {
     @RequestBody User user,
     HttpServletResponse response
   ) {
-    System.out.println(
-      "Intento de inicio de sesión para el usuario: " + user.getEmail()
-    );
     Optional<User> userOptional = userService.getUserByEmail(user.getEmail());
 
     if (userOptional.isPresent()) {

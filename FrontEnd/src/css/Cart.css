@@ -75,4 +75,8 @@
 .orders_table th {
   text-align: center;
   border: solid 0px white;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
 }

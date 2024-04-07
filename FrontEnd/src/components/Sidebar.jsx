@@ -12,7 +12,8 @@ function Sidebar() {
 
   return (
     <section className="sidebar">
-      <h1 className="sidebar__title">Taller 2</h1>
+      <h1 className="sidebar__title">Tienda</h1>
+      {user.role === "ADMIN" && <p>{user.role}</p>}
       <ul>
         <li
           className="sidebar__li"
