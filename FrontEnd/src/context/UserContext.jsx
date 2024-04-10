@@ -39,6 +39,10 @@ export const AuthProvider = ({ children }) => {
   const logIn = async (user) => {
     try {
       const res = await loginUserRequest(user);
+      if (res.data.user.active === "INACTIVE") {
+        logOut();
+        return "Usuario inactivo";
+      }
       setIsAuthenticated(true);
       setUser(res.data);
       checkLogin();

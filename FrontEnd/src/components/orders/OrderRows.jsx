@@ -1,9 +1,9 @@
 import React from "react";
 import { useOrder } from "../../context/OrderContext";
 import { useAuth } from "../../context/UserContext";
-import { FaEye, FaPlusCircle } from "react-icons/fa";
+import { FaEye } from "react-icons/fa";
 
-function OrderRows() {
+function OrderRows({toggleOrderDetails}) {
   const { orders } = useOrder();
   const { user, users } = useAuth();
 
@@ -13,7 +13,7 @@ function OrderRows() {
       : orders;
 
   const findUser = (userId) => {
-    return users.find((user) => user.userId === userId).firstName;
+    return `${users.find((user) => user.userId === userId).firstName} ${users.find((user) => user.userId === userId).lastName}`;
   };
 
   items.forEach((item) => {
@@ -24,12 +24,12 @@ function OrderRows() {
 
   return (
     <>
-      {items.map((product) => (
-        <tr key={product.orderId}>
-          <td>{product.totalPrice}</td>
-          <td>{product.orderDate}</td>
-          {user?.role === "ADMIN" && <td>{findUser(product.userId)}</td>}
-          <td className="table__button">
+      {items.map((order) => (
+        <tr key={order.orderId}>
+          <td>{order.orderDate}</td>
+          <td>${order.totalPrice}</td>
+          {user?.role === "ADMIN" && <td>{findUser(order.userId)}</td>}
+          <td className="table__button" onClick={()=> toggleOrderDetails(order.orderId)}>
             <FaEye />
           </td>
         </tr>

@@ -1,6 +1,6 @@
-import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
+import Cart from "./components/cart/Cart";
 import { useAuth } from "./context/UserContext";
 import RoutesPG from "./routes/RoutesPG";
 

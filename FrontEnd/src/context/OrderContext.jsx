@@ -27,6 +27,7 @@ export const OrderProvider = ({ children }) => {
     try {
       const res = await postOrderRequest(order);
       getOrders();
+      setCart([]);
       return res;
     } catch (error) {
       console.log(error);

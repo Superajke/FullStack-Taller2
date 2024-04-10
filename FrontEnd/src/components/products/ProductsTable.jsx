@@ -3,13 +3,16 @@ import ProductsRows from "./ProductsRows";
 import UpdateItem from "../UptadeItem";
 import { useAuth } from "../../context/UserContext";
 import DeleteItem from "../DeleteItem";
+import { useProduct } from "../../context/ProductContext";
 
-function ProductsTable() {
+function ProductsTable(tableType) {
   const { user } = useAuth();
   const [update, setUpdate] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [deleter, setDeleter] = useState(false);
   const [item, setItem] = useState(null);
+  const { products } = useProduct();
+  const tableTy = tableType.tableType;
 
   const toggleUpdate = (id) => {
     setCurrentId(id);
@@ -25,25 +28,34 @@ function ProductsTable() {
   return (
     <>
       <section className="appointments_content__container">
-        <table className="appointments__table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Precio</th>
-              {user?.role === "ADMIN" && <th>Stock</th>}
-              {user?.role === "USER" && <th>Añadir</th>}
-              {user?.role === "ADMIN" && <th>Editar</th>}
-              {user?.role === "ADMIN" && <th>Eliminar</th>}
-            </tr>
-          </thead>
-          <tbody>
-            <ProductsRows
-              toggleUpdate={toggleUpdate}
-              toggleDelete={toggleDelete}
-            />
-          </tbody>
-        </table>
+        {products.length < 1 ? (
+          <p style={{ color: "white", fontSize: "2.5rem" }}>
+            No se ha añadido ningun producto
+          </p>
+        ) : (
+          <table className="appointments__table">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                {user?.role === "ADMIN" && <th>Stock</th>}
+                {user?.role === "USER" && <th>Añadir</th>}
+                {user?.role === "ADMIN" && <th>Editar</th>}
+                {user?.role === "ADMIN" && (
+                  <th>{tableTy === "ACTIVE" ? "Eliminar" : "Restaurar"}</th>
+                )}
+              </tr>
+            </thead>
+            <tbody>
+              <ProductsRows
+                toggleUpdate={toggleUpdate}
+                toggleDelete={toggleDelete}
+                tableType={tableType}
+              />
+            </tbody>
+          </table>
+        )}
       </section>
       {update && (
         <UpdateItem item="product" id={currentId} toggleUpdate={toggleUpdate} />
@@ -54,6 +66,7 @@ function ProductsTable() {
           item={item}
           id={currentId}
           toggleDelete={toggleDelete}
+          tableType={tableTy}
         />
       )}
     </>

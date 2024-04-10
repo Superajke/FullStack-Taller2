@@ -1,10 +1,15 @@
 import { useAuth } from "../../context/UserContext";
-import { FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
-function UsersRows({ toggleUpdate, toggleDelete }) {
+import { FaPencilAlt, FaRegTrashAlt, FaRetweet } from "react-icons/fa";
+function UsersRows({ toggleUpdate, toggleDelete, tableType }) {
   const { users } = useAuth();
+  
+  tableType = tableType.tableType;
+
+  const userList = users.filter((user) => user.active === tableType);
+
   return (
     <>
-      {users.map((user) => (
+      {userList.map((user) => (
         <tr key={user.userId}>
           <td>
             {user.firstName} {user.lastName}
@@ -25,7 +30,7 @@ function UsersRows({ toggleUpdate, toggleDelete }) {
               toggleDelete(user.userId, user.firstName + " " + user.lastName);
             }}
           >
-            <FaRegTrashAlt />
+            {tableType === "ACTIVE" ? <FaRegTrashAlt /> : <FaRetweet />}
           </td>
         </tr>
       ))}

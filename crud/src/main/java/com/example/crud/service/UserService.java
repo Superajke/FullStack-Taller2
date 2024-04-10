@@ -48,6 +48,12 @@ public class UserService {
   }
 
   public void deleteUserById(Long id) {
-    userRepository.deleteById(id);
+    Optional<User> userOpt = userRepository.findById(id);
+
+    if (userOpt.isPresent()) {
+      User user = userOpt.get();
+      user.toggleActiveStatus();
+      userRepository.save(user);
+    } else {}
   }
 }

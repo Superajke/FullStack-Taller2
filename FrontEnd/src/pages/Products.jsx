@@ -19,7 +19,16 @@ function Products() {
             <FaPlusCircle className="product__add" onClick={toggleUpdate} />
           )}
         </header>
-        <ProductsTable />
+        <ProductsTable tableType={"ACTIVE"} />
+        {user?.role === "ADMIN" && (
+          <>
+            <br />
+            <header className="usuariosTitle__container">
+              <h2>Productos Inactivos</h2>
+            </header>
+            <ProductsTable tableType={"INACTIVE"} />
+          </>
+        )}
       </section>
       {update && (
         <UpdateItem item="product" id={""} toggleUpdate={toggleUpdate} />

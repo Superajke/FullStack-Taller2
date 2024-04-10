@@ -2,12 +2,14 @@ import { useState } from "react";
 import UsersRows from "./UsersRows";
 import UpdateItem from "../UptadeItem";
 import DeleteItem from "../DeleteItem";
+import { useAuth } from "../../context/UserContext";
 
-function UsersTable() {
+function UsersTable(tableType) {
   const [update, setUpdate] = useState(false);
   const [currentId, setCurrentId] = useState(null);
   const [deleter, setDeleter] = useState(false);
   const [item, setItem] = useState(null);
+  const {user} = useAuth();
   const toggleUpdate = (id) => {
     setCurrentId(id);
     setUpdate(!update);
@@ -17,6 +19,7 @@ function UsersTable() {
     setDeleter(!deleter);
     setItem(item);
   };
+  const tableTy = tableType.tableType;
   return (
     <>
       <section className="appointments_content__container">
@@ -27,13 +30,16 @@ function UsersTable() {
               <th>Email</th>
               <th>Rol</th>
               <th>Editar</th>
-              <th>Eliminar</th>
+              {user?.role === "ADMIN" && (
+                  <th>{tableTy === "ACTIVE" ? "Eliminar" : "Restaurar"}</th>
+                )}
             </tr>
           </thead>
           <tbody>
             <UsersRows
               toggleUpdate={toggleUpdate}
               toggleDelete={toggleDelete}
+              tableType={tableType}
             />
           </tbody>
         </table>
@@ -42,7 +48,7 @@ function UsersTable() {
         <UpdateItem item="user" id={currentId} toggleUpdate={toggleUpdate} />
       )}
       {deleter && (
-        <DeleteItem type="user" item={item}  id={currentId} toggleDelete={toggleDelete} />
+        <DeleteItem type="user" item={item}  id={currentId} toggleDelete={toggleDelete} tableType={tableTy} />
       )}
     </>
   );

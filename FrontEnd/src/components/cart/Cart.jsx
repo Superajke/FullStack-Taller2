@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { FaCartPlus } from "react-icons/fa";
-import "../css/Cart.css";
-import { useOrder } from "../context/OrderContext";
-import { useAuth } from "../context/UserContext";
+import "../../css/Cart.css";
+import { useOrder } from "../../context/OrderContext";
+import { useAuth } from "../../context/UserContext";
 import { Toaster, toast } from "react-hot-toast";
-import CartTable from "./cart/CartTable";
+import CartTable from "./CartTable";
 
 const toastStyle = {
   borderRadius: "10px",
@@ -57,6 +57,11 @@ const Cart = () => {
         quantity: item.quantity,
       })),
     };
+    setPreviousCartQuantitySum(0);
+    toast.success("Orden creada con éxito", {
+      style: toastStyle,
+      duration: 3000,
+    });
     await createOrder(order);
     setShowCart(false);
   };

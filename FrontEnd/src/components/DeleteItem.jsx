@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useProduct } from "../context/ProductContext";
 import { useAuth } from "../context/UserContext";
 
-function DeleteItem({ item, id, type, toggleDelete }) {
+function DeleteItem({ item, id, type, toggleDelete, tableType }) {
   const { deleteProduct } = useProduct();
   const { deleteUser } = useAuth();
   const [deleting, setDeleteing] = useState(false);
@@ -22,6 +22,7 @@ function DeleteItem({ item, id, type, toggleDelete }) {
       toggleDelete(0);
     }, 1500);
   };
+  const tableTy = tableType === "ACTIVE" ? "Eliminar" : "Restaurar";
 
   return (
     <section>
@@ -29,7 +30,7 @@ function DeleteItem({ item, id, type, toggleDelete }) {
       <section className="update">
         {type === "product" ? (
           <section className="delete__section">
-            <h2>Estás seguro que deseas eliminar el Product: </h2>
+            <h2>Estás seguro que deseas {tableTy} el Product: </h2>
             <p
               style={{
                 color: "var(--primary-color)",
@@ -41,13 +42,13 @@ function DeleteItem({ item, id, type, toggleDelete }) {
             </p>
 
             {deleting ? (
-              <p className="submit__text">Eliminando...</p>
+              <p className="submit__text">Procesando...</p>
             ) : (
               <button
                 className="submit_button"
                 onClick={() => deleteProducts(id)}
               >
-                Eliminar
+                {tableTy}
               </button>
             )}
             <button className="submit_button" onClick={() => toggleDelete(0)}>
@@ -56,7 +57,7 @@ function DeleteItem({ item, id, type, toggleDelete }) {
           </section>
         ) : (
           <section className="delete__section">
-            <h2>Estás seguro que deseas eliminar el Usuario: </h2>
+            <h2>Estás seguro que deseas {tableTy} el Usuario: </h2>
             <p
               style={{
                 color: "var(--primary-color)",
@@ -67,10 +68,10 @@ function DeleteItem({ item, id, type, toggleDelete }) {
               {item}
             </p>
             {deleting ? (
-              <p className="submit__text">Eliminando...</p>
+              <p className="submit__text">Procesando...</p>
             ) : (
               <button className="submit_button" onClick={() => deleteUsers(id)}>
-                Eliminar
+                {tableTy}
               </button>
             )}
             <button className="submit_button" onClick={() => toggleDelete(0)}>

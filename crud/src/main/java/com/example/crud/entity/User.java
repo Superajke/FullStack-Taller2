@@ -34,4 +34,16 @@ public class User {
   @Enumerated(EnumType.STRING)
   @Column(name = "user_role", length = 20)
   private UserRole role = UserRole.USER;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "product_active", length = 20)
+  private ActiveItem active = ActiveItem.ACTIVE;
+
+  public void toggleActiveStatus() {
+    if (this.active == ActiveItem.ACTIVE) {
+      this.active = ActiveItem.INACTIVE;
+    } else {
+      this.active = ActiveItem.ACTIVE;
+    }
+  }
 }

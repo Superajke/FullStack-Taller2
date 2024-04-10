@@ -1,5 +1,6 @@
 package com.example.crud.service;
 
+import com.example.crud.entity.ActiveItem;
 import com.example.crud.entity.Product;
 import com.example.crud.repository.ProductRepository;
 import java.util.List;
@@ -26,6 +27,12 @@ public class ProductService {
   }
 
   public void deleteProductById(Long id) {
-    productRepository.deleteById(id);
+    Optional<Product> productOpt = productRepository.findById(id);
+
+    if (productOpt.isPresent()) {
+      Product product = productOpt.get();
+      product.toggleActiveStatus();
+      productRepository.save(product);
+    } else {}
   }
 }

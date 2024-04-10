@@ -2,17 +2,26 @@ import React from "react";
 import { useProduct } from "../../context/ProductContext";
 import { useAuth } from "../../context/UserContext";
 import { useOrder } from "../../context/OrderContext";
-import { FaCartPlus, FaPencilAlt, FaRegTrashAlt } from "react-icons/fa";
+import {
+  FaCartPlus,
+  FaPencilAlt,
+  FaRegTrashAlt,
+  FaRetweet,
+} from "react-icons/fa";
 
-function ProductsRows({ toggleUpdate, toggleDelete }) {
+function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
   const { user } = useAuth();
   const { products } = useProduct();
   const { addItem } = useOrder();
+  tableType = tableType.tableType;
 
   const productsStock =
     user.role === "USER"
-      ? products.filter((product) => product.productStock > 0)
-      : products;
+      ? products.filter(
+          (product) =>
+            product.productStock > 0 && product.active === tableType
+        )
+      : products.filter((product) => product.active === tableType);
 
   return (
     <>
@@ -47,7 +56,7 @@ function ProductsRows({ toggleUpdate, toggleDelete }) {
                   toggleDelete(product.productId, product.productName)
                 }
               >
-                <FaRegTrashAlt />
+                {tableType === "ACTIVE" ? <FaRegTrashAlt /> : <FaRetweet />}
               </td>
             </>
           )}
