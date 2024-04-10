@@ -47,6 +47,28 @@ public class UserService {
     userRepository.save(user);
   }
 
+  public void updateUser(User user) throws Exception {
+    if (user.getUserId() == null) {
+      Optional<User> existingUserByEmail = userRepository.findByEmail(
+        user.getEmail()
+      );
+      if (existingUserByEmail.isPresent()) {
+        throw new Exception("El correo ya está en uso");
+      }
+    } else {
+      Optional<User> existingUser = userRepository.findById(user.getUserId());
+      if (existingUser.isPresent()) {
+        String currentPassword = existingUser.get().getPassword();
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+          user.setPassword(currentPassword);
+        }
+      } else {
+        throw new Exception("El usuario no existe");
+      }
+    }
+    userRepository.save(user);
+  }
+
   public void deleteUserById(Long id) {
     Optional<User> userOpt = userRepository.findById(id);
 

@@ -6,6 +6,7 @@ import {
   logOutRequest,
   getUserRequest,
   deleteUserRequest,
+  updateUserRequest,
 } from "../api/user.api";
 import Cookies from "js-cookie";
 
@@ -35,6 +36,16 @@ export const AuthProvider = ({ children }) => {
       return error.response.data;
     }
   };
+
+  const updateUser = async (userDetails) => {
+    try {
+      await updateUserRequest(userDetails);
+      getUsers();
+    } catch (error) {
+      console.log(error);
+      return error.response.data;
+    }
+  }
 
   const logIn = async (user) => {
     try {
@@ -120,6 +131,7 @@ export const AuthProvider = ({ children }) => {
         logIn,
         logOut,
         signUp,
+        updateUser,
         checkLogin,
         getUsers,
         deleteUser,

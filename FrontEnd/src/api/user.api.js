@@ -12,6 +12,10 @@ export const createUserRequest = async (user) => {
   return await axios.post(`http://localhost:3000/api/v1/user`, user);
 };
 
+export const updateUserRequest = async (userDetails) => {
+  return await axios.put(`http://localhost:3000/api/v1/user`, userDetails);
+};
+
 export const logOutRequest = async () =>
   await axios.post(
     `http://localhost:3000/logout`,

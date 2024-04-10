@@ -7,7 +7,7 @@ import { toast } from "react-hot-toast";
 
 function UptadeItem({ item, id, toggleUpdate }) {
   const { register, handleSubmit, setValue } = useForm();
-  const { users, signUp } = useAuth();
+  const { users, updateUser } = useAuth();
   const { products, createUpdateProduct } = useProduct();
   const [button, setButton] = useState(true);
 
@@ -27,9 +27,11 @@ function UptadeItem({ item, id, toggleUpdate }) {
         setValue("firstName", foundItem.firstName);
         setValue("lastName", foundItem.lastName);
         setValue("email", foundItem.email);
+        setValue("role", foundItem.role);
       }
     }
   }, []);
+
   const onSubmitProduct = handleSubmit(async (data) => {
     setButton(false);
     if (id) {
@@ -45,11 +47,12 @@ function UptadeItem({ item, id, toggleUpdate }) {
     if (id) {
       data.userId = id;
     }
-    await signUp(data);
+    await updateUser(data);
     setTimeout(() => {
       toggleUpdate(0);
     }, 1500);
   });
+  
   return (
     <section>
       <section className="backdrop" onClick={() => toggleUpdate(0)}></section>
@@ -109,7 +112,21 @@ function UptadeItem({ item, id, toggleUpdate }) {
               </div>
               <div>
                 <p>Correo Eléctronico</p>
-                <input type="email" {...register("email")} />
+                <input type="text" {...register("email")} />
+              </div>
+              <div>
+                <p>Rol</p>
+                <select
+                  className="register__form-select"
+                  type="text"
+                  {...register("role")}
+                >
+                  <option value="" disabled hidden>
+                    Rol
+                  </option>
+                  <option value="ADMIN">Admin</option>
+                  <option value="USER">User</option>
+                </select>
               </div>
             </section>
 

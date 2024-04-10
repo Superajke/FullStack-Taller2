@@ -81,13 +81,13 @@
   border: none;
 }
 
-.register__form select {
+.register__form-select {
   color: white;
   text-align: center;
   width: calc(50% - 1rem);
-  margin-bottom: 2.2rem;
-  height: 4.3rem;
+  height: 5rem;
   border-radius: 2.2rem;
+  margin-top: 1.4rem;
   background: var(--background-color);
   border: none;
 }
