@@ -1,6 +1,5 @@
 package com.example.crud.service;
 
-import com.example.crud.entity.ActiveItem;
 import com.example.crud.entity.Product;
 import com.example.crud.repository.ProductRepository;
 import java.util.List;

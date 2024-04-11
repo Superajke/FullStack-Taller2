@@ -5,6 +5,7 @@ import { useOrder } from "../../context/OrderContext";
 import { useAuth } from "../../context/UserContext";
 import { Toaster, toast } from "react-hot-toast";
 import CartTable from "./CartTable";
+import { useProduct } from "../../context/ProductContext";
 
 const toastStyle = {
   borderRadius: "10px",
@@ -16,12 +17,14 @@ const toastStyle = {
 const Cart = () => {
   const [showCart, setShowCart] = useState(false);
   const { cart, createOrder } = useOrder();
-  const [previousCartQuantitySum, setPreviousCartQuantitySum] = useState(0);
   const { user } = useAuth();
+  const { getProducts } = useProduct();
+  const [previousCartQuantitySum, setPreviousCartQuantitySum] = useState(0);
 
   useEffect(() => {
-    const currentCartQuantitySum = cart.filter((item) => item.userId === user.userId)
-                                        .reduce((sum, item) => sum + item.quantity, 0);
+    const currentCartQuantitySum = cart
+      .filter((item) => item.userId === user.userId)
+      .reduce((sum, item) => sum + item.quantity, 0);
 
     if (currentCartQuantitySum > previousCartQuantitySum) {
       toast.success("Producto añadido con éxito", {
@@ -64,6 +67,7 @@ const Cart = () => {
     });
     await createOrder(order);
     setShowCart(false);
+    getProducts()
   };
 
   return (
@@ -105,7 +109,11 @@ const Cart = () => {
                   Comprar
                 </button>
                 <p style={{ fontSize: "2rem" }}>
-                  <span style={{ fontWeight: "bold" }}>Total:</span> ${items.reduce((acc, item) => acc + item.productPrice * item.quantity, 0)}
+                  <span style={{ fontWeight: "bold" }}>Total:</span> $
+                  {items.reduce(
+                    (acc, item) => acc + item.productPrice * item.quantity,
+                    0
+                  )}
                 </p>
               </div>
             </>

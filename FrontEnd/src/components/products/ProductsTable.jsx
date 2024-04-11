@@ -28,9 +28,12 @@ function ProductsTable(tableType) {
   return (
     <>
       <section className="appointments_content__container">
-        {products.length < 1 ? (
+        {user.role === "USER" &&
+        products.every(
+          (product) => product.active === "INACTIVE" || product.productStock < 1
+        ) ? (
           <p style={{ color: "white", fontSize: "2.5rem" }}>
-            No se ha añadido ningun producto
+            No hay productos en stock
           </p>
         ) : (
           <table className="appointments__table">

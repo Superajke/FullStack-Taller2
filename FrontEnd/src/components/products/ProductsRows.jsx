@@ -2,6 +2,8 @@ import React from "react";
 import { useProduct } from "../../context/ProductContext";
 import { useAuth } from "../../context/UserContext";
 import { useOrder } from "../../context/OrderContext";
+import { toast } from "react-hot-toast";
+
 import {
   FaCartPlus,
   FaPencilAlt,
@@ -23,6 +25,20 @@ function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
         )
       : products.filter((product) => product.active === tableType);
 
+  const addNewItem = async (product, id) => {
+    const res = await addItem(product, id);
+    if (res === "Producto ya en el carrito") {
+      toast.error(res, {
+        style: {
+          borderRadius: "10px",
+          background: "var(--background-color-dark)",
+          color: "var(--primary-color)",
+          transform: "scale(-1, 1)",
+        },
+        duration: 1000,
+      })
+    }
+  }
   return (
     <>
       {productsStock.map((product) => (
@@ -34,7 +50,7 @@ function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
           {user?.role === "USER" && (
             <td
               onClick={() => {
-                addItem(product, user.userId);
+                addNewItem(product, user.userId);
               }}
               className="table__button"
               style={{ cursor: "pointer", fontSize: "2.5rem" }}

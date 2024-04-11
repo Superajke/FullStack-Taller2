@@ -3,7 +3,7 @@ import { useOrder } from "../../context/OrderContext";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import { useAuth } from "../../context/UserContext";
 import { useProduct } from "../../context/ProductContext";
-import { Toaster, toast } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 function CartRows() {
   const { cart, updateQuantity } = useOrder();

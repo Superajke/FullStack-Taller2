@@ -39,8 +39,7 @@ export const OrderProvider = ({ children }) => {
       (item) => item.productId === product.productId
     );
     if (existingItem) {
-      updateQuantity(existingItem.productId, 1);
-      return;
+      return "Producto ya en el carrito";
     }
     const newProduct = {
       userId: id,
