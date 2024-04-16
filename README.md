@@ -1,6 +1,6 @@
 # FullStack Taller 2
 
-Programa con CRUD Usuarios y productos
+Programa CRUD con usuarios los cuales pueden ver y realizar la compra de productos, también tiene roles, Admin, User.
 
 ## Requisitos Previos
 
