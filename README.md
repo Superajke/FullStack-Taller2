@@ -9,7 +9,7 @@ Antes de comenzar, asegúrate de haber instalado lo siguiente:
 - Maven 3.6 o superior (para el backend)
 - Node.js 12.18 o superior (para el frontend)
 - npm 6.14 o superior (para el frontend)
-
+- MySQL server y para fácil manejo MySQL Workbench
 ## Instalación
 
 Sigue estos pasos para configurar tu entorno de desarrollo local.
@@ -25,7 +25,9 @@ cd crud
 mvn clean install
 ```
 
-4. Ejecuta la aplicación Spring Boot
+4. Crea tu base de datos, y en la ruta crud/src/main/resources/application.properties edita este archivo y ponle las opciones de configuración de tu base de datos
+
+5. Ejecuta la aplicación Spring Boot
 
 La aplicación debería estar corriendo ahora en `http://localhost:3000`.
 
