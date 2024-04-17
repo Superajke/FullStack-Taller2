@@ -16,17 +16,16 @@ function OrderRows({toggleOrderDetails}) {
     return `${users.find((user) => user.userId === userId).firstName} ${users.find((user) => user.userId === userId).lastName}`;
   };
 
-  items.forEach((item) => {
-    const date = new Date(item.orderDate);
-    const formattedDate = date.toLocaleDateString();
-    item.orderDate = formattedDate;
-  });
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    return newDate.toLocaleDateString();
+  }
 
   return (
     <>
       {items.map((order) => (
         <tr key={order.orderId}>
-          <td>{order.orderDate}</td>
+          <td>{formatDate(order.orderDate)}</td>
           <td>${order.totalPrice}</td>
           {user?.role === "ADMIN" && <td>{findUser(order.userId)}</td>}
           <td className="table__button" onClick={()=> toggleOrderDetails(order.orderId)}>

@@ -17,6 +17,13 @@ function OrderDetails({ id, toggleOrderDetails }) {
     return products.find((product) => product.productId === productId)
       .productName;
   };
+
+  const formatDate = (date) => {
+    const newDate = new Date(date);
+    return `${newDate.getDate()}/${
+      newDate.getMonth() + 1
+    }/${newDate.getFullYear()}`;
+  }
   return (
     <section>
       <section
@@ -30,7 +37,7 @@ function OrderDetails({ id, toggleOrderDetails }) {
             <span style={{ color: "var(--primary-color)" }}>
               Fecha de compra:
             </span>{" "}
-            {order.orderDate}
+            {formatDate(order.orderDate)}
           </p>
           <p>
             <span style={{ color: "var(--primary-color)" }}>Precio total:</span>{" "}
