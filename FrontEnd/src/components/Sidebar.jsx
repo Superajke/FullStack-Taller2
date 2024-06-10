@@ -4,6 +4,7 @@ import "../css/Sidebar.css";
 
 function Sidebar() {
   const { logOut, user } = useAuth();
+  console.log(user.role);
   const navigate = useNavigate();
   const onClick = () => {
     logOut();
@@ -13,7 +14,9 @@ function Sidebar() {
   return (
     <section className="sidebar">
       <h1 className="sidebar__title">Tienda</h1>
-      {user.role === "ADMIN" && <p style={{marginBottom: "1rem"}}>{user.role}</p>}
+      {user.role === "ADMIN" && (
+        <p style={{ marginBottom: "1rem" }}>{user.role}</p>
+      )}
       <ul>
         <li
           className="sidebar__li"
@@ -23,7 +26,7 @@ function Sidebar() {
         >
           Inicio
         </li>
-        {user.role == "ADMIN" && (
+        {(user.role == "ADMIN" || user.role == "ADMIN_CLIENTES") && (
           <li
             className="sidebar__li"
             onClick={() => {

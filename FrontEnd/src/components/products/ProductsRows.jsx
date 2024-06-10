@@ -16,12 +16,12 @@ function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
   const { products } = useProduct();
   const { addItem } = useOrder();
   tableType = tableType.tableType;
+  console.log(products)
 
   const productsStock =
     user.role === "USER"
       ? products.filter(
-          (product) =>
-            product.productStock > 0 && product.active === tableType
+          (product) => product.productStock > 0 && product.active === tableType
         )
       : products.filter((product) => product.active === tableType);
 
@@ -36,9 +36,9 @@ function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
           transform: "scale(-1, 1)",
         },
         duration: 1000,
-      })
+      });
     }
-  }
+  };
   return (
     <>
       {productsStock.map((product) => (
@@ -46,19 +46,17 @@ function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
           <td>{product.productName}</td>
           <td>{product.productDescription}</td>
           <td>${product.productPrice}</td>
-          {user?.role === "ADMIN" && <td>{product.productStock}</td>}
-          {user?.role === "USER" && (
-            <td
-              onClick={() => {
-                addNewItem(product, user.userId);
-              }}
-              className="table__button"
-              style={{ cursor: "pointer", fontSize: "2.5rem" }}
-            >
-              <FaCartPlus />
-            </td>
-          )}
-          {user?.role === "ADMIN" && (
+          {(user?.role === "ADMIN" || user?.role === "ADMIN_PRODUCTO") && <td>{product.productStock}</td>}
+          <td
+            onClick={() => {
+              addNewItem(product, user.userId);
+            }}
+            className="table__button"
+            style={{ cursor: "pointer", fontSize: "2.5rem" }}
+          >
+            <FaCartPlus />
+          </td>
+          {(user?.role === "ADMIN" || user?.role === "ADMIN_PRODUCTO") && (
             <>
               <td
                 className="table__button"

@@ -10,7 +10,7 @@ function OrderDetails({ id, toggleOrderDetails }) {
   const order = orders.find(
     (order) =>
       order.orderId === id &&
-      (user.role === "USER" ? order.userId === user.userId : true)
+      (user.role === "CLIENTE" ? order.userId === user.userId : true)
   );
 
   const productFinder = (productId) => {

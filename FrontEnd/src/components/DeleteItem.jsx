@@ -22,7 +22,7 @@ function DeleteItem({ item, id, type, toggleDelete, tableType }) {
       toggleDelete(0);
     }, 1500);
   };
-  const tableTy = tableType === "ACTIVE" ? "Eliminar" : "Restaurar";
+  const tableTy = tableType === "ACTIVE" ? "Eliminar" : "Activar";
 
   return (
     <section>

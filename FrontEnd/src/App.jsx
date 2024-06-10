@@ -14,7 +14,7 @@ function App() {
           <RoutesPG />
         </section>
       </section>
-      {isAuthenticated && user?.role ==="USER" && <Cart />}
+      <Cart />
       <Footer />
     </main>
   );

@@ -1,6 +1,8 @@
 package com.example.crud.entity;
 
 enum UserRole {
-  USER,
   ADMIN,
+  ADMIN_CLIENTES,
+  ADMIN_PRODUCTO,
+  CLIENTE,
 }

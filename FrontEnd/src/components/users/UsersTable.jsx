@@ -9,7 +9,7 @@ function UsersTable(tableType) {
   const [currentId, setCurrentId] = useState(null);
   const [deleter, setDeleter] = useState(false);
   const [item, setItem] = useState(null);
-  const {user} = useAuth();
+  const { user } = useAuth();
   const toggleUpdate = (id) => {
     setCurrentId(id);
     setUpdate(!update);
@@ -30,9 +30,9 @@ function UsersTable(tableType) {
               <th>Email</th>
               <th>Rol</th>
               <th>Editar</th>
-              {user?.role === "ADMIN" && (
-                  <th>{tableTy === "ACTIVE" ? "Eliminar" : "Restaurar"}</th>
-                )}
+              {(user?.role === "ADMIN" || user?.role === "ADMIN_CLIENTES") && (
+                <th>{tableTy === "ACTIVE" ? "Eliminar" : "Activar"}</th>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -48,7 +48,13 @@ function UsersTable(tableType) {
         <UpdateItem item="user" id={currentId} toggleUpdate={toggleUpdate} />
       )}
       {deleter && (
-        <DeleteItem type="user" item={item}  id={currentId} toggleDelete={toggleDelete} tableType={tableTy} />
+        <DeleteItem
+          type="user"
+          item={item}
+          id={currentId}
+          toggleDelete={toggleDelete}
+          tableType={tableTy}
+        />
       )}
     </>
   );

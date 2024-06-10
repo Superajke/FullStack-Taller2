@@ -79,12 +79,12 @@ public class UserController {
       return ResponseEntity.badRequest().body(e.getMessage());
     }
 
-    String token = jwtService.generateToken(user);
+    // String token = jwtService.generateToken(user);
 
-    Cookie cookie = new Cookie("token", token);
-    cookie.setHttpOnly(false);
-    cookie.setPath("/");
-    response.addCookie(cookie);
+    // Cookie cookie = new Cookie("token", token);
+    // cookie.setHttpOnly(false);
+    // cookie.setPath("/");
+    // response.addCookie(cookie);
 
     return ResponseEntity.ok("Usuario registrado exitosamente.");
   }

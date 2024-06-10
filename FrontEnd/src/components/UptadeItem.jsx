@@ -3,7 +3,6 @@ import "../css/Update.css";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/UserContext";
 import { useProduct } from "../context/ProductContext";
-import { toast } from "react-hot-toast";
 
 function UptadeItem({ item, id, toggleUpdate }) {
   const { register, handleSubmit, setValue } = useForm();
@@ -52,7 +51,7 @@ function UptadeItem({ item, id, toggleUpdate }) {
       toggleUpdate(0);
     }, 1500);
   });
-  
+
   return (
     <section>
       <section className="backdrop" onClick={() => toggleUpdate(0)}></section>
@@ -125,7 +124,9 @@ function UptadeItem({ item, id, toggleUpdate }) {
                     Rol
                   </option>
                   <option value="ADMIN">Admin</option>
-                  <option value="USER">User</option>
+                  <option value="ADMIN_CLIENTES">Admin Clientes</option>
+                  <option value="ADMIN_PRODUCTO">Admin Producto</option>
+                  <option value="CLIENTE">Clientes</option>
                 </select>
               </div>
             </section>

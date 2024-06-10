@@ -28,7 +28,7 @@ function ProductsTable(tableType) {
   return (
     <>
       <section className="appointments_content__container">
-        {user.role === "USER" &&
+        {user.role === "CLIENTE" &&
         products.every(
           (product) => product.active === "INACTIVE" || product.productStock < 1
         ) ? (
@@ -42,10 +42,13 @@ function ProductsTable(tableType) {
                 <th>Nombre</th>
                 <th>Descripción</th>
                 <th>Precio</th>
-                {user?.role === "ADMIN" && <th>Stock</th>}
-                {user?.role === "USER" && <th>Añadir</th>}
-                {user?.role === "ADMIN" && <th>Editar</th>}
-                {user?.role === "ADMIN" && (
+                {(user?.role === "ADMIN" ||
+                  user?.role === "ADMIN_PRODUCTO") && <th>Stock</th>}
+                <th>Añadir</th>
+                {(user?.role === "ADMIN" ||
+                  user?.role === "ADMIN_PRODUCTO") && <th>Editar</th>}
+                {(user?.role === "ADMIN" ||
+                  user?.role === "ADMIN_PRODUCTO") && (
                   <th>{tableTy === "ACTIVE" ? "Eliminar" : "Restaurar"}</th>
                 )}
               </tr>

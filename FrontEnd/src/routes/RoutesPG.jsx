@@ -9,7 +9,7 @@ import ProtectedRoute from "../ProtectedRoute";
 import Orders from "../pages/Orders";
 
 function RoutesPG() {
-  const { isAuthenticated, user } = useAuth();
+  const { user } = useAuth();
   return (
     <Routes>
       <Route path="/" element={<LogIn />} />
@@ -18,7 +18,13 @@ function RoutesPG() {
         <Route path="/home" element={<Home />}></Route>
         <Route
           path="/users"
-          element={user?.role !== "ADMIN" ? <Home /> : <Users />}
+          element={
+            !(user?.role !== "ADMIN" || user?.role !== "ADMIN_CLIENTES") ? (
+              <Home />
+            ) : (
+              <Users />
+            )
+          }
         />
         <Route path="/products" element={<Products />} />
         <Route path="/orders" element={<Orders />} />

@@ -4,15 +4,13 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import { useAuth } from "../context/UserContext";
 import { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ showLoginForm }) => {
+  const navigate = useNavigate();
   const { signUp } = useAuth();
   const [state, setState] = useState(1);
-  const {
-    register,
-    handleSubmit,
-    getValues,
-  } = useForm();
+  const { register, handleSubmit, getValues } = useForm();
 
   const toastStyle = {
     borderRadius: "10px",
@@ -24,7 +22,6 @@ const Register = ({ showLoginForm }) => {
   const onBar = () => {
     showLoginForm();
   };
-
 
   const changeStateForward = () => {
     if (state == 1) {
@@ -42,16 +39,16 @@ const Register = ({ showLoginForm }) => {
         return;
       }
       setState(2);
-    } 
+    }
   };
 
   const changeStateBackwards = () => {
     if (state == 2) {
       setState(1);
-    } 
+    }
   };
 
-  const onSubmit = handleSubmit(async(data) => {
+  const onSubmit = handleSubmit(async (data) => {
     let isValid = true;
     if (data.password !== data.user_password_confirm) {
       toast.error("Las contraseñas no coinciden", {
@@ -62,10 +59,18 @@ const Register = ({ showLoginForm }) => {
     delete data.user_password_confirm;
     if (isValid) {
       const res = await signUp(data);
-      if(typeof res !== 'object'){
+      if (typeof res !== "object") {
         toast.error(res, {
           style: toastStyle,
         });
+      }
+      if (res.data === "Usuario registrado exitosamente.") {
+        toast.success(res.data, {
+          style: toastStyle,
+        });
+        setTimeout(() => {
+          navigate("/home");
+        }, 2000);
       }
     }
   });
@@ -97,7 +102,6 @@ const Register = ({ showLoginForm }) => {
                   {...register("lastName", { required: true })}
                   placeholder="Apellido"
                 />
-
               </section>
             </section>
           )}
@@ -117,7 +121,6 @@ const Register = ({ showLoginForm }) => {
               />
 
               <section className="register__inputs">
-
                 <input
                   type="password"
                   {...register("password", { required: true })}

@@ -31,13 +31,13 @@ public class User {
   @Column(name = "user_password", nullable = false)
   private String password;
 
-  @Enumerated(EnumType.STRING)
+  @Enumerated(EnumType.ORDINAL)
   @Column(name = "user_role", length = 20)
-  private UserRole role = UserRole.USER;
+  private UserRole role = UserRole.CLIENTE;
 
-  @Enumerated(EnumType.STRING)
-  @Column(name = "product_active", length = 20)
-  private ActiveItem active = ActiveItem.ACTIVE;
+  @Enumerated(EnumType.ORDINAL)
+  @Column(name = "user_active", length = 20)
+  private ActiveItem active = ActiveItem.INACTIVE;
 
   public void toggleActiveStatus() {
     if (this.active == ActiveItem.ACTIVE) {

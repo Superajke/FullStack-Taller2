@@ -8,7 +8,7 @@ function OrderRows({toggleOrderDetails}) {
   const { user, users } = useAuth();
 
   const items =
-    user.role === "USER"
+    user.role === "CLIENTE"
       ? orders.filter((order) => order.userId === user.userId)
       : orders;
 

@@ -20,7 +20,7 @@ function Products() {
           )}
         </header>
         <ProductsTable tableType={"ACTIVE"} />
-        {user?.role === "ADMIN" && (
+        {(user?.role === "ADMIN" || user?.role === "ADMIN_PRODUCTO") && (
           <>
             <br />
             <header className="usuariosTitle__container">
