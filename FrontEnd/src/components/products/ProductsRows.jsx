@@ -19,7 +19,7 @@ function ProductsRows({ toggleUpdate, toggleDelete, tableType }) {
   console.log(products)
 
   const productsStock =
-    user.role === "USER"
+    user.role === "CLIENTE" || user.role === "ADMIN_CLIENTES"
       ? products.filter(
           (product) => product.productStock > 0 && product.active === tableType
         )

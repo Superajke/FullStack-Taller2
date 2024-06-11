@@ -15,7 +15,7 @@ function Products() {
       <section className="usuarios__container">
         <header className="usuariosTitle__container">
           <h2>Productos</h2>
-          {user?.role === "ADMIN" && (
+          {(user?.role === "ADMIN" || user?.role === "ADMIN_PRODUCTO") && (
             <FaPlusCircle className="product__add" onClick={toggleUpdate} />
           )}
         </header>

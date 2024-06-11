@@ -12,7 +12,7 @@ function DeleteItem({ item, id, type, toggleDelete, tableType }) {
     await deleteProduct(id);
     setTimeout(() => {
       toggleDelete(0);
-    }, 1500);
+    }, 800);
   };
 
   const deleteUsers = async (id) => {
@@ -20,7 +20,7 @@ function DeleteItem({ item, id, type, toggleDelete, tableType }) {
     await deleteUser(id);
     setTimeout(() => {
       toggleDelete(0);
-    }, 1500);
+    }, 800);
   };
   const tableTy = tableType === "ACTIVE" ? "Eliminar" : "Activar";
 

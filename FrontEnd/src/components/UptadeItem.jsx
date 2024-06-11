@@ -39,7 +39,7 @@ function UptadeItem({ item, id, toggleUpdate }) {
     await createUpdateProduct(data);
     setTimeout(() => {
       toggleUpdate(0);
-    }, 1500);
+    }, 800);
   });
   const onSubmitUser = handleSubmit(async (data) => {
     setButton(false);
@@ -49,7 +49,7 @@ function UptadeItem({ item, id, toggleUpdate }) {
     await updateUser(data);
     setTimeout(() => {
       toggleUpdate(0);
-    }, 1500);
+    }, 800);
   });
 
   return (

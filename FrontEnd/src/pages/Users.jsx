@@ -12,7 +12,7 @@ function Users() {
           <h2>Usuarios</h2>
         </header>
         <UsersTable tableType={"ACTIVE"}/>
-        {user?.role === "ADMIN" && (
+        {(user?.role === "ADMIN" || user?.role === "ADMIN_CLIENTES") && (
           <>
             <br />
             <header className="usuariosTitle__container">

@@ -28,7 +28,7 @@ function ProductsTable(tableType) {
   return (
     <>
       <section className="appointments_content__container">
-        {user.role === "CLIENTE" &&
+        {(user.role === "CLIENTE" || user.role === "ADMIN_CLIENTES") &&
         products.every(
           (product) => product.active === "INACTIVE" || product.productStock < 1
         ) ? (

@@ -49,6 +49,7 @@ const Register = ({ showLoginForm }) => {
   };
 
   const onSubmit = handleSubmit(async (data) => {
+    setState(3);
     let isValid = true;
     if (data.password !== data.user_password_confirm) {
       toast.error("Las contraseñas no coinciden", {

@@ -4,7 +4,6 @@ import "../css/Sidebar.css";
 
 function Sidebar() {
   const { logOut, user } = useAuth();
-  console.log(user.role);
   const navigate = useNavigate();
   const onClick = () => {
     logOut();

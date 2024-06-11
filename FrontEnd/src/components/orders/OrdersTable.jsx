@@ -11,7 +11,7 @@ function OrdersTable() {
   const [currentId, setCurrentId] = useState(null);
 
   const items =
-    user.role === "CLIENTE"
+    user.role === "CLIENTE" || user.role === "ADMIN_CLIENTES" || user.role === "ADMIN_PRODUCTO"
       ? orders.filter((order) => order.userId === user.userId)
       : orders;
 
